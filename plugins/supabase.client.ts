@@ -1,10 +1,18 @@
 // plugins/supabase.client.ts
-import { createClient } from '@supabase/supabase-js'
-import { useRuntimeConfig } from '#imports'
+import { defineNuxtPlugin, useRuntimeConfig } from '#imports'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const config = useRuntimeConfig()
+export default defineNuxtPlugin(() => {
+  const config = useRuntimeConfig().public
 
-export const supabase = createClient(
-  config.public.supabaseUrl,
-  config.public.supabaseAnonKey
-)
+  const supabase: SupabaseClient = createClient(
+    config.supabaseUrl,
+    config.supabaseAnonKey
+  )
+
+  return {
+    provide: {
+      supabase
+    }
+  }
+})
