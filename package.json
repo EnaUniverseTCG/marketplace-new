@@ -14,7 +14,7 @@
     "@pinia/nuxt": "^0.11.0",
     "@supabase/supabase-js": "^2.49.4",
     "chart.js": "^4.4.9",
-    "ethers": "^6.13.5",
+    "ethers": "^6.13.7",
     "lucide-vue-next": "^0.503.0",
     "nuxt": "^3.16.2",
     "stripe": "^18.0.0",
