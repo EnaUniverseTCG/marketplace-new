@@ -1,30 +1,38 @@
-// /composables/useStats.ts
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 
-export function useStats(cardId: string) {
-  const key = (action: string) => `stats_${cardId}_${action}`
+export interface Point { x: string; y: number }
 
-  function track(action: 'add_to_cart' | 'buy_hybrid') {
-    const k = key(action)
-    const prev = parseInt(localStorage.getItem(k) || '0', 10)
-    localStorage.setItem(k, String(prev + 1))
+export function useStats(
+  selectedId: Ref<string>,
+  metric: Ref<string>,
+  period: Ref<string>,
+) {
+  const chartData = ref<Point[]>([])
+
+  /**
+   * Stub para trocar parâmetros.
+   * Podes guardar (selectedId, metric, period) aqui se quiseres.
+   */
+  function setParams(id: string, m: string, p: string) {
+    // por agora não faz nada, mas é onde podes reagir a mudanças
   }
 
-  function get(action: 'add_to_cart' | 'buy_hybrid') {
-    return parseInt(localStorage.getItem(key(action)) || '0', 10)
-  }
-
-  // para gráfico: gera uma série histórica falsa
-  const chartData = ref<{ x: string; y: number }[]>([])
+  /**
+   * Carrega dados históricos fictícios
+   * baseado no período (7 ou 30 dias).
+   */
   function loadHistory() {
-    // aqui você puxaria de um backend real; 
-    // vamos simular 7 dias aleatórios
-    const now = new Date()
-    chartData.value = Array.from({ length: 7 }).map((_, i) => {
-      const d = new Date(now.getTime() - (6 - i) * 86400000)
-      return { x: d.toISOString().slice(0,10), y: Math.floor(Math.random()*10) }
-    })
+    const days = period.value.includes('30') ? 30 : 7
+    const today = new Date()
+    const arr: Point[] = []
+    for (let i = days - 1; i >= 0; i--) {
+      const d = new Date(today)
+      d.setDate(d.getDate() - i)
+      const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+      arr.push({ x: label, y: Math.floor(Math.random() * 20 + 1) })
+    }
+    chartData.value = arr
   }
 
-  return { track, get, chartData, loadHistory }
+  return { chartData, setParams, loadHistory }
 }

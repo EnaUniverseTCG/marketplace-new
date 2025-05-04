@@ -38,13 +38,13 @@
         @animationend="added = false"
         class="bg-enaBlue text-black hover:brightness-110"
       >
-        Adicionar ao Carrinho
+        Add to the Cart
       </button>
       <button
         @click="buyHybrid(deck.id)"
         class="px-6 py-3 bg-enaYellow text-black font-semibold rounded hover:brightness-110 transition"
       >
-        Comprar Hybrid
+        Why Hybrid
       </button>
     </div>
   </div>

@@ -31,7 +31,7 @@
           title="OpenSea Collection"
           description="Explore collectible NFTs & exclusive free mints."
           color="green"
-          to="https://opensea.io/colecao-ena"
+          to="https://opensea.io/collection/ena-universe"
         />
         <PillarCard
           title="Staking & Tokenomics"

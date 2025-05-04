@@ -1,38 +1,30 @@
-<!-- components/StatsChart.vue -->
 <template>
-  <div class="w-full max-w-md mx-auto">
-    <LineChart
-      :chart-data="chartJsData"
-      :chart-options="chartOptions"
-    />
+  <div class="w-full">
+    <Line :data="chartJsData" :options="chartOptions" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Line } from 'vue-chartjs'
-import 'chart.js/auto'        // garante que o Chart.js carrega tudo automaticamente
+import 'chart.js/auto'
 
 interface Point { x: string; y: number }
 
-const props = defineProps<{ data: Point[] }>()
+const props = defineProps<{ data: Point[]; label: string }>()
 
 const chartJsData = computed(() => ({
   labels: props.data.map(p => p.x),
   datasets: [{
-    label: 'Adds to Cart (últimos 7 dias)',
+    label: props.label,
     data: props.data.map(p => p.y),
     borderWidth: 2,
     fill: false,
-  }]
+  }],
 }))
 
 const chartOptions = {
   responsive: true,
-  scales: { y: { beginAtZero: true } }
+  scales: { y: { beginAtZero: true } },
 }
 </script>
-
-<style scoped>
-/* se quiseres, podes ajustar o tamanho do canvas aqui */
-</style>
