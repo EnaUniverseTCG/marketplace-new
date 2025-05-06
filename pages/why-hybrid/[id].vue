@@ -25,7 +25,7 @@
         <h2 class="text-2xl font-semibold">Digital Twin</h2>
         <p>
           On-chain NFT version: tradeable on OpenSea<br/>
-          Daily staking rewards • Marketplace sales • In-game utility
+          Daily staking rewards • Marketplace sales • In‑game utility
         </p>
         <img
           src="/cards/placeholder-deck1-nft.png"
@@ -42,16 +42,19 @@
         <li>Install MetaMask (or your preferred wallet).</li>
         <li>Add the Soneium network:
           <pre class="inline-block bg-black/70 p-2 rounded font-mono">
-  Network Name: Soneium
-  RPC URL:     https://rpc.soneium.io
-  Chain ID:    1234
-  Symbol:      SNEA
-  Explorer:    https://explorer.soneium.io
+Network Name: Soneium
+RPC URL:     https://rpc.soneium.io
+Chain ID:    1234
+Symbol:      SNEA
+Explorer:    https://explorer.soneium.io
           </pre>
         </li>
-        <li>Copy your wallet address and, no checkout, selecione “Include Digital Twin”.</li>
-        <li>To verify ownership later, connect your wallet on <a href="https://opensea.io" target="_blank"
-              class="text-enaYellow underline">OpenSea</a>.</li>
+        <li>Copy your wallet address and, in checkout, select “Include Digital Twin”.</li>
+        <li>To verify ownership later, connect your wallet on
+          <a href="https://opensea.io" target="_blank" class="text-enaYellow underline">
+            OpenSea
+          </a>.
+        </li>
       </ul>
     </div>
 
@@ -62,15 +65,15 @@
         <ul class="list-disc list-inside text-gray-300 space-y-1 mt-2">
           <li>Earn daily staking rewards in $ENA.</li>
           <li>Instant global marketplace trading.</li>
-          <li>In-game unlocks & special tournament passes.</li>
+          <li>In‑game unlocks & special tournament passes.</li>
         </ul>
       </div>
       <div class="bg-gray-900/50 p-4 rounded">
         <h4 class="font-semibold text-lg">Physical Advantages</h4>
         <ul class="list-disc list-inside text-gray-300 space-y-1 mt-2">
-          <li>Premium cardstock with holo-foil finish.</li>
+          <li>Premium cardstock with holo‑foil finish.</li>
           <li>Collector’s edition numbered sleeve.</li>
-          <li>Signed by the AI-driven design team.</li>
+          <li>Signed by the AI‑driven design team.</li>
         </ul>
       </div>
     </div>
@@ -95,7 +98,8 @@ const router = useRouter()
 const id = route.params.id as string
 
 function goToCheckout() {
-  router.push(`/checkout/hybrid/${id}`)
+  // agora vai para a mesma rota do checkout normal (/checkout/ID)
+  router.push(`/checkout/${id}`)
 }
 </script>
 
