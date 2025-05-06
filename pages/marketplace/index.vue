@@ -1,6 +1,6 @@
 <template>
   <section class="px-4 py-8">
-    <!-- Title + filters -->
+    <!-- Título + filtros -->
     <div class="flex flex-col sm:flex-row gap-4 mb-6 items-center">
       <h1 class="text-4xl font-ena text-enaYellow flex-shrink-0">Marketplace</h1>
       <input
@@ -23,7 +23,7 @@
       </select>
     </div>
 
-    <!-- Card grid -->
+    <!-- Grid de cards -->
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
       <DeckCard
         v-for="deck in displayedDecks"
@@ -34,10 +34,10 @@
       />
     </div>
 
-    <!-- infinite-scroll sentinel -->
+    <!-- Sentinel do infinite-scroll -->
     <div ref="loadTrigger" class="h-1"></div>
 
-    <!-- loading indicator -->
+    <!-- Loading -->
     <div v-if="loading" class="text-center text-gray-400 mt-6">
       Loading more cards…
     </div>
@@ -67,7 +67,7 @@ const decks = ref<Deck[]>([])
 const search = ref('')
 const rarityFilter = ref('')
 
-// pagination
+// paginação
 const perPage = 12
 const page    = ref(1)
 const loading = ref(false)
@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
   if (observer && loadTrigger.value) observer.unobserve(loadTrigger.value)
 })
 
-// stub: add to cart
+// stub do cart
 function addToCart(id: string) {
   alert(`✅ Added Card #${id} to cart!`)
 }
@@ -128,12 +128,12 @@ function addToCart(id: string) {
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 .font-ena { font-family: 'Orbitron', sans-serif; }
 
-/* lazy-load placeholder */
+/* placeholder lazy-load */
 .deck-card img {
   background: url('/spinner.svg') center/20px no-repeat;
 }
 
-/* tighter gap on small screens */
+/* gaps mais apertados no mobile */
 @media (max-width: 640px) {
   .grid {
     gap: 0.5rem;

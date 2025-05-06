@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full min-h-screen overflow-hidden font-ena">
-    <!-- Vídeo de fundo vem do layout padrão -->
+    <!-- Vídeo de fundo (aplica‑se no layout default) -->
 
     <div class="relative z-10 flex flex-col items-center justify-center text-center text-white px-6">
       <!-- Hero -->
@@ -11,11 +11,15 @@
         <p class="text-lg md:text-xl text-gray-300 animate-fade-in delay-200">
           The First TCG Built by AI — Where Your Cards Are Real, Digital, and Powerful.
         </p>
-        <NuxtLink
-          to="/marketplace"
-          class="inline-block mt-6 px-8 py-3 bg-enaYellow text-black font-semibold rounded-lg hover:bg-enaBlue transition animate-fade-in delay-400"
-        >
-          Hybrid Marketplace
+
+        <!-- Botão “Why Hybrid?” -->
+        <NuxtLink to="/why-hybrid" class="block animate-fade-in delay-400">
+          <button
+            class="mx-auto px-8 py-4 md:px-16 md:py-6 bg-enaYellow text-black font-extrabold text-xl md:text-3xl rounded-full shadow-2xl ring-4 ring-yellow-300 animate-pulse
+                   hover:animate-none hover:scale-110 transform transition-all duration-300"
+          >
+            Why Hybrid?
+          </button>
         </NuxtLink>
       </section>
 
@@ -47,24 +51,11 @@
         />
       </section>
 
-      <!-- Botão Super Gamificado "Why Hybrid?" -->
-      <div class="flex justify-center my-20">
-        <NuxtLink to="/why-hybrid">
-          <button
-            class="relative px-16 py-6 bg-yellow-400 text-black font-extrabold text-3xl rounded-full shadow-2xl ring-4 ring-yellow-300 animate-pulse
-                   hover:animate-none hover:scale-110 transform transition-all duration-300"
-          >
-            Why Hybrid?
-          </button>
-        </NuxtLink>
-      </div>
-
       <!-- Featured Cards -->
       <section class="py-16 w-full bg-black/70 overflow-visible">
         <h2 class="text-3xl text-enaYellow font-semibold text-center mb-8">
           Featured Cards
         </h2>
-        <!-- quando hover neste container, blur nas .featured-card que NÃO estiverem em hover -->
         <div
           class="featured-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto px-4"
         >
@@ -94,6 +85,7 @@ const featuredCards = [
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+.font-ena { font-family: 'Orbitron', sans-serif; }
 
 /* Animações */
 @keyframes fade-in { from { opacity: 0 } to { opacity:1 } }
