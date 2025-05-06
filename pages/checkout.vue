@@ -1,9 +1,5 @@
-<!-- pages/checkout.vue -->
 <template>
   <div class="px-4 py-8 font-ena text-white min-h-screen bg-enaBlack">
-    <!-- Passa hideLinks para esconder os links dentro do Navbar -->
-    <Navbar :hideLinks="true" />
-
     <h1 class="text-4xl text-enaYellow mb-6">Checkout</h1>
 
     <!-- carrinho vazio -->
@@ -140,22 +136,17 @@
 import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
-import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 
 const cart = useCartStore()
 const router = useRouter()
 
-// constantes de custo
 const shippingFee = 6
-
-// subtotal e total
 const subtotal = computed(() =>
   cart.items.reduce((sum, i) => sum + i.price * i.quantity, 0)
 )
 const total = computed(() => subtotal.value + shippingFee)
 
-// formulário
 const form = reactive({
   name: '',
   address: '',

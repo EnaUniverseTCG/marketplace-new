@@ -1,13 +1,13 @@
 <template>
   <div
     ref="cardRef"
-    :class="[ 
+    :class="[
       'deck-card relative w-60 rounded-xl overflow-visible transform transition-shadow duration-300 hover:z-20 border-2',
       'hover:shadow-[0_0_20px_rgba(255,214,0,0.7)]',
-      borderColor,
-      { 'animate-pop': added }       
+      borderClass,
+      { 'animate-pop': added }
     ]"
-    @animationend="added = false"    
+    @animationend="added = false"
   >
     <!-- Background gradient -->
     <div
@@ -18,7 +18,7 @@
     <!-- Badge + ATK/DEF -->
     <div class="relative z-10 p-3 flex justify-between items-start">
       <span class="px-2 py-1 text-xs font-bold text-black rounded bg-enaYellow">
-        {{ capitalize(deck.rarity) }}
+        {{ rarityLabel }}
       </span>
       <div class="space-x-2 text-white text-xs font-bold">
         <span>ATK: {{ deck.attack }}</span>
@@ -41,9 +41,9 @@
         <h3 class="text-lg font-semibold text-white truncate">{{ deck.name }}</h3>
         <span class="text-enaYellow font-bold">{{ deck.price }} {{ deck.currency }}</span>
       </div>
+
       <!-- buttons row -->
       <div class="flex space-x-2">
-        <!-- Details programático -->
         <button
           @click="goToDetails"
           class="flex-1 flex items-center justify-center px-3 py-2 bg-enaBlue text-black font-semibold rounded hover:brightness-110 transition"
@@ -55,7 +55,6 @@
           Details
         </button>
 
-        <!-- Add to Cart via Pinia store -->
         <button
           @click="addToCart()"
           class="flex-1 flex items-center justify-center px-3 py-2 bg-purple-600 text-white font-semibold rounded hover:brightness-110 transition"
@@ -90,31 +89,30 @@ interface Deck {
 const props = defineProps<{ deck: Deck }>()
 const router = useRouter()
 const cart = useCartStore()
-
-// estado para animação
 const added = ref(false)
 
-// Gradientes por raridade
-const colors: Record<string, [string, string]> = {
-  common:    ['#B91C1C', '#7F1D1D'],
-  rare:      ['#047857', '#065F46'],
-  epic:      ['#1E40AF', '#1E3A8A'],
-  legendary: ['#111111', '#333333'],
-  neutral:   ['#D29B0E', '#A16207'],
-  mana:      ['#6D28D9', '#4C1D95']
+// gradient + border maps
+const gradientMap: Record<string, [string, string]> = {
+  common:    ['#B91C1C','#7F1D1D'],
+  rare:      ['#047857','#065F46'],
+  epic:      ['#1E40AF','#1E3A8A'],
+  legendary: ['#111111','#333333'],
+  neutral:   ['#D29B0E','#A16207'],
+  mana:      ['#6D28D9','#4C1D95'],
 }
-
-const key = props.deck.rarity.toLowerCase()
-const [gradientFrom, gradientTo] = colors[key] || colors.common
-
-const borderColor: Record<string, string> = {
+const borderMap: Record<string,string> = {
   common:    'border-red-600',
   rare:      'border-green-600',
   epic:      'border-blue-600',
   legendary: 'border-gray-800',
   neutral:   'border-yellow-700',
-  mana:      'border-purple-600'
+  mana:      'border-purple-600',
 }
+
+const key = props.deck.rarity.toLowerCase()
+const [gradientFrom, gradientTo] = gradientMap[key] || gradientMap.common
+const borderClass = borderMap[key] || borderMap.common
+const rarityLabel = props.deck.rarity.charAt(0).toUpperCase() + props.deck.rarity.slice(1)
 
 const cardRef = ref<HTMLElement>()
 onMounted(() => {
@@ -123,16 +121,10 @@ onMounted(() => {
   }
 })
 
-function capitalize(s: string) {
-  return s.charAt(0).toUpperCase() + s.slice(1)
-}
-
-// Navegação programática para detalhes
 function goToDetails() {
   router.push(`/marketplace/${props.deck.id}`)
 }
 
-// Adiciona ao carrinho
 function addToCart() {
   cart.addToCart({
     id: props.deck.id,
@@ -141,7 +133,7 @@ function addToCart() {
     currency: props.deck.currency,
     image: props.deck.image
   })
-  added.value = true    // dispara animação
+  added.value = true
 }
 </script>
 
@@ -149,13 +141,10 @@ function addToCart() {
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 .deck-card { font-family: 'Orbitron', sans-serif; }
 
-/* keyframes para “pop” */
+/* pop animation */
 @keyframes pop {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0%,100% { transform: scale(1) }
+  50%     { transform: scale(1.1) }
 }
-.animate-pop {
-  animation: pop 0.3s ease;
-}
+.animate-pop { animation: pop 0.3s ease; }
 </style>

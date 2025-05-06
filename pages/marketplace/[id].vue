@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="flex justify-center space-x-4 mb-8">
+    <div class="flex justify-center mb-8">
       <button
         @click="onAdd()"
         :class="['px-6 py-3 font-semibold rounded transition', { 'animate-pop': added }]"
@@ -39,12 +39,6 @@
         class="bg-enaBlue text-black hover:brightness-110"
       >
         Add to the Cart
-      </button>
-      <button
-        @click="buyHybrid(deck.id)"
-        class="px-6 py-3 bg-enaYellow text-black font-semibold rounded hover:brightness-110 transition"
-      >
-        Why Hybrid
       </button>
     </div>
   </div>
@@ -55,7 +49,16 @@ import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
 
-interface Deck { /* … mesma interface … */ }
+interface Deck {
+  id: string
+  name: string
+  image: string
+  price: number
+  currency: string
+  attack: number
+  defense: number
+  rarity: string
+}
 
 const route = useRoute()
 const router = useRouter()
@@ -83,7 +86,7 @@ function capitalize(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-// borda
+// borda por raridade
 const colors: Record<string,string> = {
   common:    'border-red-600',
   rare:      'border-green-600',
@@ -94,7 +97,7 @@ const colors: Record<string,string> = {
 }
 const borderColor = computed(() => colors[deck.value.rarity] || 'border-gray-700')
 
-// ações
+// ação única
 function onAdd() {
   cart.addToCart({
     id: deck.value.id,
@@ -105,23 +108,16 @@ function onAdd() {
   })
   added.value = true
 }
-
-function buyHybrid(id: string) {
-  router.push(`/checkout/hybrid/${id}`)
-}
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 .font-ena { font-family: 'Orbitron', sans-serif; }
 
-/* mesmo keyframe do DeckCard */
+/* animação pop */
 @keyframes pop {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0%,100% { transform: scale(1) }
+  50%     { transform: scale(1.1) }
 }
-.animate-pop {
-  animation: pop 0.3s ease;
-}
+.animate-pop { animation: pop 0.3s ease; }
 </style>

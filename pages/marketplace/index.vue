@@ -29,8 +29,8 @@
         v-for="deck in displayedDecks"
         :key="deck.id"
         :deck="deck"
-        @details="id => navigateTo(`/marketplace/${id}`)"
         @add-to-cart="addToCart"
+        @details="id => navigateTo(`/marketplace/${id}`)"
       />
     </div>
 
@@ -63,31 +63,29 @@ interface Deck {
 const router = useRouter()
 const navigateTo = (url: string) => router.push(url)
 
-const decks         = ref<Deck[]>([])
-const search        = ref('')
-const rarityFilter  = ref('')
+const decks = ref<Deck[]>([])
+const search = ref('')
+const rarityFilter = ref('')
 
-// infinite scroll
+// pagination
 const perPage = 12
 const page    = ref(1)
 const loading = ref(false)
 
-// simulate ~200 cards
 const rarities = ['common','rare','epic','legendary','neutral','mana']
+
 onMounted(() => {
-  decks.value = Array.from({ length: 200 }, (_, i) => {
-    const r = rarities[i % rarities.length]
-    return {
-      id:       String(i + 1),
-      name:     `Card #${i + 1}`,
-      image:    `/cards/placeholder-deck${(i % 2) + 1}.png`,
-      price:    Math.ceil(Math.random() * 20),
-      currency: 'EUR',
-      attack:   Math.ceil(Math.random() * 6),
-      defense:  Math.ceil(Math.random() * 6),
-      rarity:   r
-    }
-  })
+  decks.value = Array.from({ length: 200 }, (_, i) => ({
+    id:       String(i + 1),
+    name:     `Card #${i+1}`,
+    image:    `/cards/placeholder-deck${(i%2)+1}.png`,
+    price:    Math.ceil(Math.random()*20),
+    currency: 'EUR',
+    attack:   Math.ceil(Math.random()*6),
+    defense:  Math.ceil(Math.random()*6),
+    rarity:   rarities[i % rarities.length]
+  }))
+  createObserver()
 })
 
 const filteredDecks = computed(() =>
@@ -101,30 +99,21 @@ const displayedDecks = computed(() =>
   filteredDecks.value.slice(0, page.value * perPage)
 )
 
-// intersection-observer to load more
 const loadTrigger = ref<HTMLElement|null>(null)
 let observer: IntersectionObserver|null = null
-
 function createObserver() {
   if (!loadTrigger.value) return
   observer = new IntersectionObserver(
     ([entry]) => {
-      if (entry.isIntersecting && !loading.value) {
-        if (displayedDecks.value.length < filteredDecks.value.length) {
-          loading.value = true
-          setTimeout(() => {
-            page.value += 1
-            loading.value = false
-          }, 600)
-        }
+      if (entry.isIntersecting && !loading.value && displayedDecks.value.length < filteredDecks.value.length) {
+        loading.value = true
+        setTimeout(() => { page.value += 1; loading.value = false }, 600)
       }
     },
     { rootMargin: '200px' }
   )
   observer.observe(loadTrigger.value)
 }
-
-onMounted(createObserver)
 onBeforeUnmount(() => {
   if (observer && loadTrigger.value) observer.unobserve(loadTrigger.value)
 })
@@ -137,6 +126,7 @@ function addToCart(id: string) {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+.font-ena { font-family: 'Orbitron', sans-serif; }
 
 /* lazy-load placeholder */
 .deck-card img {

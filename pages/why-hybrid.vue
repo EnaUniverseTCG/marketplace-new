@@ -1,39 +1,36 @@
 <template>
   <div class="relative min-h-screen overflow-hidden font-ena text-white">
-    <!-- Vídeo de fundo -->
+    <!-- Vídeo de fundo suave -->
     <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-20">
-      <source src="/videos/bg.mp4" type="video/mp4" />
+      <source src="/ena-bg-video.mp4" type="video/mp4" />
     </video>
 
-    <div class="relative z-10 max-w-5xl mx-auto px-6 py-16 space-y-16">
-      <!-- Back + Título -->
-      <NuxtLink to="/" class="text-gray-400 hover:text-enaYellow mb-4 inline-block">
-        ← Back to Home
-      </NuxtLink>
-      <h1 class="text-5xl font-bold text-enaYellow text-center">Why Go Hybrid?</h1>
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-16 space-y-12">
+      <!-- Navegação de volta + Título com efeito neon -->
+      <div class="flex items-center space-x-4">
+        <NuxtLink to="/" class="text-gray-400 hover:text-enaYellow transition">
+          ← Back
+        </NuxtLink>
+        <h1 class="text-5xl font-bold text-enaYellow glow-neon">Why Go Hybrid?</h1>
+      </div>
 
-      <!-- 1. Physical vs Hybrid -->
-      <section class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="text-3xl font-semibold text-enaYellow mb-4">Physical Card</h2>
-          <p class="text-gray-300 mb-4">
-            A tactile, collectible card minted on–chain. Perfect for display, trading
-            and exclusive in-person events.
-          </p>
+      <!-- Seção comparativa com cards interativos -->
+      <section class="grid md:grid-cols-2 gap-8">
+        <div class="card-interactive p-6 bg-gray-900 border border-gray-700 rounded-lg hover:scale-105 transform transition duration-300">
+          <h2 class="text-3xl font-semibold text-enaYellow mb-2">Physical Card</h2>
+          <p class="text-gray-300 mb-4">A tactile, collectible card minted on–chain. Perfect for display, trading and exclusive in-person events.</p>
           <ul class="list-disc list-inside text-gray-300 space-y-2">
             <li>No on-chain utility</li>
             <li>One-time collectible item</li>
             <li>Great for tournaments & showpieces</li>
           </ul>
         </div>
-        <div>
-          <h2 class="text-3xl font-semibold text-enaYellow mb-4">
-            Hybrid Card<br><span class="text-sm text-gray-400">(Physical + Digital Twin)</span>
-          </h2>
-          <p class="text-gray-300 mb-4">
-            Every Hybrid comes with a digital on-chain twin. Use it in-game, stake it for
-            daily rewards, or trade it on OpenSea!
-          </p>
+        <div class="card-interactive p-6 bg-gray-900 border border-enaYellow rounded-lg hover:scale-105 transform transition duration-300">
+          <div class="inline-block mb-2 animate-flicker">
+            <h2 class="text-3xl font-semibold text-enaYellow">Hybrid Card</h2>
+            <span class="text-sm text-gray-400 ml-2">(Physical + Digital Twin)</span>
+          </div>
+          <p class="text-gray-300 mb-4">Every Hybrid comes with a digital on-chain twin. Use it in-game, stake it for daily rewards, or trade it on OpenSea!</p>
           <ul class="list-disc list-inside text-gray-300 space-y-2">
             <li>On-chain gaming utility</li>
             <li>Daily $ENA staking rewards</li>
@@ -42,81 +39,102 @@
         </div>
       </section>
 
-      <!-- 2. Como configurar o seu wallet -->
+      <!-- Getting Started gamificada com ícones animados -->
       <section class="space-y-6">
-        <h2 class="text-3xl font-semibold text-enaYellow">Getting Started</h2>
+        <h2 class="text-3xl font-semibold text-enaYellow glow-neon">Getting Started</h2>
         <ol class="list-decimal list-inside text-gray-300 space-y-4">
-          <li>
-            <strong>Install a Web3 wallet</strong>  
-            (e.g. MetaMask).  
-            <NuxtLink to="/play" class="text-enaYellow underline">Learn how →</NuxtLink>
+          <li class="flex items-start space-x-4">
+            <span class="text-enaYellow text-2xl animate-pulse">①</span>
+            <div>
+              <strong>Install a Web3 wallet</strong> (e.g. MetaMask).
+              <NuxtLink to="/play" class="text-enaYellow underline ml-1">Learn how →</NuxtLink>
+            </div>
           </li>
-          <li>
-            <strong>Add the Soneium network</strong>  
-            RPC URL: <code>https://rpc.soneium.org</code><br>
-            Chain ID: <code>1234</code>
+          <li class="flex items-start space-x-4">
+            <span class="text-enaYellow text-2xl animate-pulse">②</span>
+            <div>
+              <strong>Add the Soneium network</strong><br>
+              RPC URL: <code>https://rpc.soneium.org</code><br>
+              Chain ID: <code>1234</code>
+            </div>
           </li>
-          <li>
-            <strong>Copy your wallet address</strong>  
-            (click “Copy Address” in your wallet extension).
+          <li class="flex items-start space-x-4">
+            <span class="text-enaYellow text-2xl animate-pulse">③</span>
+            <div>
+              <strong>Copy your wallet address</strong> (click “Copy Address” in your wallet extension).
+            </div>
           </li>
-          <li>
-            <strong>At Checkout</strong>  
-            selecione “Hybrid” e cole seu endereço.  
-            Você receberá a versão física e a digital on-chain twin.
+          <li class="flex items-start space-x-4">
+            <span class="text-enaYellow text-2xl animate-pulse">④</span>
+            <div>
+              <strong>At Checkout</strong> selecione “Hybrid” e cole seu endereço para receber a versão física e digital.
+            </div>
           </li>
-          <li>
-            <strong>Verify on OpenSea</strong>  
-            Conecte-se com MetaMask em 
-            <a href="https://opensea.io" target="_blank" class="text-enaYellow underline">
-              opensea.io
-            </a>.
+          <li class="flex items-start space-x-4">
+            <span class="text-enaYellow text-2xl animate-pulse">⑤</span>
+            <div>
+              <strong>Verify on OpenSea</strong> Conecte-se com MetaMask em
+              <a href="https://opensea.io" target="_blank" class="text-enaYellow underline">opensea.io</a>.
+            </div>
           </li>
         </ol>
       </section>
 
-      <!-- 3. Vantagens do Hybrid -->
+      <!-- Vantagens com hover reveal -->
       <section class="space-y-6">
-        <h2 class="text-3xl font-semibold text-enaYellow">Hybrid Advantages</h2>
+        <h2 class="text-3xl font-semibold text-enaYellow glow-neon">Hybrid Advantages</h2>
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="p-6 bg-gray-800 border border-enaYellow rounded-lg hover:shadow-lg transition">
-            <h3 class="text-xl font-semibold mb-2">Daily Staking Rewards</h3>
-            <p class="text-gray-300 text-sm">
-              Earn up to 10 $ENA/day per card just by staking your digital twin.
-            </p>
+          <div class="advantage-card p-6 bg-gray-900 rounded-lg group relative overflow-hidden border border-enaYellow">
+            <div class="group-hover:bg-enaYellow bg-gradient-to-t from-transparent to-black absolute inset-0 transition-all duration-300"></div>
+            <h3 class="text-xl font-semibold mb-2 z-10 relative">Daily Staking Rewards</h3>
+            <p class="text-gray-300 text-sm z-10 relative group-hover:text-black transition">Earn up to 10 $ENA/day per card just by staking your digital twin.</p>
           </div>
-          <div class="p-6 bg-gray-800 border border-enaYellow rounded-lg hover:shadow-lg transition">
-            <h3 class="text-xl font-semibold mb-2">In-Game Utility</h3>
-            <p class="text-gray-300 text-sm">
-              Use your card directly in the TCG — no extra steps.
-            </p>
+          <div class="advantage-card p-6 bg-gray-900 rounded-lg group relative overflow-hidden border border-enaYellow">
+            <div class="group-hover:bg-enaYellow bg-gradient-to-t from-transparent to-black absolute inset-0 transition-all duration-300"></div>
+            <h3 class="text-xl font-semibold mb-2 z-10 relative">In-Game Utility</h3>
+            <p class="text-gray-300 text-sm z-10 relative group-hover:text-black transition">Use your card directly in the TCG &ndash; no extra steps.</p>
           </div>
-          <div class="p-6 bg-gray-800 border border-enaYellow rounded-lg hover:shadow-lg transition">
-            <h3 class="text-xl font-semibold mb-2">Secondary Market Flexibility</h3>
-            <p class="text-gray-300 text-sm">
-              List your digital twin on OpenSea at any time.
-            </p>
+          <div class="advantage-card p-6 bg-gray-900 rounded-lg group relative overflow-hidden border border-enaYellow">
+            <div class="group-hover:bg-enaYellow bg-gradient-to-t from-transparent to-black absolute inset-0 transition-all duration-300"></div>
+            <h3 class="text-xl font-semibold mb-2 z-10 relative">Secondary Market Flexibility</h3>
+            <p class="text-gray-300 text-sm z-10 relative group-hover:text-black transition">List your digital twin on OpenSea at any time.</p>
           </div>
         </div>
       </section>
 
-      <!-- CTA final -->
-      <div class="text-center mt-12">
+      <!-- CTA final estilo gamificado -->
+      <div class="text-center mt-16">
         <NuxtLink
           to="/marketplace"
-          class="inline-block px-8 py-4 bg-enaYellow text-black font-bold rounded-lg hover:brightness-90 transition"
+          class="inline-block px-12 py-5 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold rounded-full shadow-2xl transform hover:scale-105 transition animate-pulse"
         >
-          Explore Hybrid Cards
+          EXPLORE HYBRID CARDS
         </NuxtLink>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-// Stateless por enquanto
+<script setup lang="ts">
+// Gamified interactions podem vir aqui (e.g., estados para animações avançadas)
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+
 .font-ena { font-family: 'Orbitron', sans-serif; }
+
+/* Neon glow effect */
+.glow-neon {
+  text-shadow: 0 0 8px rgba(255, 217, 0, 0.8), 0 0 16px rgba(255, 217, 0, 0.6);
+}
+
+/* Flicker animation */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+.animate-flicker {
+  animation: flicker 3s infinite;
+}
 </style>

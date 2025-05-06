@@ -47,10 +47,17 @@
         />
       </section>
 
-      <!-- Roadmap Interativo -->
-      <section class="py-16 w-full bg-black/60">
-        <Roadmap :steps="roadmapSteps" />
-      </section>
+      <!-- Botão Super Gamificado "Why Hybrid?" -->
+      <div class="flex justify-center my-20">
+        <NuxtLink to="/why-hybrid">
+          <button
+            class="relative px-16 py-6 bg-yellow-400 text-black font-extrabold text-3xl rounded-full shadow-2xl ring-4 ring-yellow-300 animate-pulse
+                   hover:animate-none hover:scale-110 transform transition-all duration-300"
+          >
+            Why Hybrid?
+          </button>
+        </NuxtLink>
+      </div>
 
       <!-- Featured Cards -->
       <section class="py-16 w-full bg-black/70 overflow-visible">
@@ -74,15 +81,7 @@
 
 <script setup lang="ts">
 import PillarCard from '@/components/PillarCard.vue'
-import Roadmap from '@/components/Roadmap.vue'
 import FeaturedCard from '@/components/FeaturedCard.vue'
-
-const roadmapSteps = [
-  { title: 'Q2 2025 – Platform Launch',   details: 'Marketplace opens, initial 50 NFTs minted, first lore quest.' },
-  { title: 'Q3 2025 – Staking & Airdrops', details: 'Introduce staking for $ENA and weekly token airdrops.' },
-  { title: 'Q4 2025 – PvP Battles',        details: 'Enable deck battles on-chain with ranking system.' },
-  { title: 'Q1 2026 – DAO & Governance',   details: 'Launch DAO voting using $ENA for roadmap decisions.' }
-]
 
 const featuredCards = [
   { name: 'Scarlet Revenant',  faction: 'Ashen Order',   rarity: 'Common',    atk: 6, def: 5, image: '/cards/scarlet-revenant.png' },
