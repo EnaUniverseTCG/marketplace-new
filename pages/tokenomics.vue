@@ -6,7 +6,9 @@
     </NuxtLink>
 
     <!-- Título -->
-    <h1 class="text-4xl font-bold text-enaYellow mb-6 text-center">ENA Universe Economy</h1>
+    <h1 class="text-4xl font-bold text-enaYellow mb-6 text-center">
+      ENA Universe Economy
+    </h1>
 
     <!-- Abas Overview / Tokenomics -->
     <div class="flex border-b border-gray-700 mb-8">
@@ -25,13 +27,12 @@
     <div class="flex-1 overflow-auto space-y-8">
       <!-- OVERVIEW -->
       <div v-if="tab === 'overview'" class="space-y-6">
+        <!-- ENA Token & NFT Cards panels -->
+        <!-- ENA Token -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- ENA Token -->
           <div class="border border-enaYellow rounded-lg p-6 space-y-4">
             <h2 class="text-2xl text-enaYellow font-semibold">ENA Token ($ENA)</h2>
-            <p class="text-gray-300">
-              The native currency of the ENA Universe ecosystem.
-            </p>
+            <p class="text-gray-300">The native currency of the ENA Universe ecosystem.</p>
             <p class="text-gray-300">
               The ENA Token ($ENA) is built on the Soneium blockchain, powering the entire ENA Universe ecosystem. It enables players to participate in the game economy, stake for rewards, and unlock exclusive content.
             </p>
@@ -50,13 +51,10 @@
               Connect Wallet
             </button>
           </div>
-
           <!-- NFT Cards -->
           <div class="border border-enaYellow rounded-lg p-6 space-y-4">
             <h2 class="text-2xl text-enaYellow font-semibold">NFT Cards</h2>
-            <p class="text-gray-300">
-              Collectible digital assets with real utility.
-            </p>
+            <p class="text-gray-300">Collectible digital assets with real utility.</p>
             <p class="text-gray-300">
               ENA Universe NFT cards are unique digital collectibles that serve as both game pieces and staking assets. Each card is minted on the Soneium blockchain with verifiable authenticity and ownership.
             </p>
@@ -67,7 +65,8 @@
               <button class="w-full px-4 py-2 bg-gray-800 text-gray-300 rounded hover:bg-gray-700">
                 Legendary Cards<br><span class="text-xs">Higher Rewards</span>
               </button>
-              <button class="w-full col-span-2 px-4 py-2 bg-enaYellow text-black font-semibold rounded hover:brightness-90"
+              <button
+                class="w-full col-span-2 px-4 py-2 bg-enaYellow text-black font-semibold rounded hover:brightness-90"
                 @click="$router.push('/marketplace')"
               >
                 Explore Cards
@@ -75,10 +74,8 @@
             </div>
           </div>
         </div>
-
         <!-- Blockchain Implementation & Airdrop -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- Blockchain Implementation -->
           <div class="border border-enaYellow rounded-lg p-6 space-y-4">
             <h3 class="text-xl font-semibold text-enaYellow">Blockchain Implementation</h3>
             <ul class="list-disc list-inside text-gray-300 space-y-1">
@@ -87,7 +84,6 @@
               <li>Physical cards with QR codes for collection tracking</li>
               <li>Direct access to updates and ecosystem development</li>
             </ul>
-
             <h4 class="mt-6 text-lg font-semibold text-enaYellow">Airdrop & NFT-Based Rewards</h4>
             <p class="text-gray-300 mb-2">
               Every 6 months, holders of ENA Universe NFTs will receive an airdrop of $ENA and possibly additional NFT cards.
@@ -107,8 +103,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Sustainability & Growth -->
           <div class="border border-enaYellow rounded-lg p-6 space-y-4">
             <h3 class="text-xl font-semibold text-enaYellow">Sustainability & Growth</h3>
             <ul class="list-disc list-inside text-gray-300 space-y-1">
@@ -196,17 +190,14 @@
         </div>
       </div>
     </div>
-
-    <Footer class="mt-8" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import Footer from '~/components/Footer.vue'
-import { NuxtLink } from '#components'
 
-// dados do pie
+const tab = ref<'overview'|'tokenomics'>('overview')
+
 const slices = computed(() => {
   const percents = [30, 30, 20, 10, 5, 5]
   const colors = ['#22c55e','#3b82f6','#a855f7','#f59e0b','#ef4444','#f97316']
@@ -218,7 +209,6 @@ const slices = computed(() => {
   })
 })
 
-// legenda com valores absolutos
 const legend = [
   { label: 'NFT Staking',     percent: 30, amount: '630 M $ENA', color: '#22c55e' },
   { label: 'Token Staking',   percent: 30, amount: '630 M $ENA', color: '#3b82f6' },
@@ -227,12 +217,8 @@ const legend = [
   { label: 'Team',            percent: 5,  amount: '105 M $ENA', color: '#ef4444' },
   { label: 'Airdrop',         percent: 5,  amount: '105 M $ENA', color: '#f97316' },
 ]
-
-// estado de navegação
-const tab = ref<'overview'|'tokenomics'>('overview')
 </script>
 
 <style scoped>
-/* qualquer ajuste extra de estilo aqui */
+/* estilos adicionais, se necessário */
 </style>
- 

@@ -1,6 +1,7 @@
 <template>
-  <section class="px-4 py-8">
-    <!-- Título + filtros -->
+  <!-- padding-top para não ficar por baixo da navbar fixa -->
+  <section class="pt-16 px-4 py-8">
+    <!-- Title + filters -->
     <div class="flex flex-col sm:flex-row gap-4 mb-6 items-center">
       <h1 class="text-4xl font-ena text-enaYellow flex-shrink-0">Marketplace</h1>
       <input
@@ -23,7 +24,7 @@
       </select>
     </div>
 
-    <!-- Grid de cards -->
+    <!-- Card grid -->
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
       <DeckCard
         v-for="deck in displayedDecks"
@@ -34,10 +35,10 @@
       />
     </div>
 
-    <!-- Sentinel do infinite-scroll -->
+    <!-- infinite-scroll sentinel -->
     <div ref="loadTrigger" class="h-1"></div>
 
-    <!-- Loading -->
+    <!-- loading indicator -->
     <div v-if="loading" class="text-center text-gray-400 mt-6">
       Loading more cards…
     </div>
@@ -67,7 +68,7 @@ const decks = ref<Deck[]>([])
 const search = ref('')
 const rarityFilter = ref('')
 
-// paginação
+// pagination
 const perPage = 12
 const page    = ref(1)
 const loading = ref(false)
@@ -101,6 +102,7 @@ const displayedDecks = computed(() =>
 
 const loadTrigger = ref<HTMLElement|null>(null)
 let observer: IntersectionObserver|null = null
+
 function createObserver() {
   if (!loadTrigger.value) return
   observer = new IntersectionObserver(
@@ -114,11 +116,12 @@ function createObserver() {
   )
   observer.observe(loadTrigger.value)
 }
+
 onBeforeUnmount(() => {
   if (observer && loadTrigger.value) observer.unobserve(loadTrigger.value)
 })
 
-// stub do cart
+// stub: add to cart
 function addToCart(id: string) {
   alert(`✅ Added Card #${id} to cart!`)
 }
@@ -128,12 +131,12 @@ function addToCart(id: string) {
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 .font-ena { font-family: 'Orbitron', sans-serif; }
 
-/* placeholder lazy-load */
+/* lazy-load placeholder */
 .deck-card img {
   background: url('/spinner.svg') center/20px no-repeat;
 }
 
-/* gaps mais apertados no mobile */
+/* tighter gap on small screens */
 @media (max-width: 640px) {
   .grid {
     gap: 0.5rem;

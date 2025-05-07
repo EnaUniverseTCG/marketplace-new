@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full min-h-screen overflow-hidden font-ena">
-    <!-- Vídeo de fundo (aplica‑se no layout default) -->
+    <!-- Vídeo de fundo (via layout default) -->
 
     <div class="relative z-10 flex flex-col items-center justify-center text-center text-white px-6">
       <!-- Hero -->
@@ -51,6 +51,56 @@
         />
       </section>
 
+      <!-- Botão 3D “Hybrid Marketplace” -->
+      <section class="py-8 w-full">
+        <NuxtLink to="/marketplace" class="group perspective-500">
+          <div
+            class="
+              mx-auto block
+              px-10 py-4 md:px-20 md:py-6
+              bg-gradient-to-br from-enaYellow to-yellow-400
+              text-black font-bold text-lg md:text-2xl
+              rounded-full
+              transform transition-transform duration-300
+              shadow-lg
+              hover:-translate-y-1 hover:scale-105
+              hover:shadow-[0_20px_30px_rgba(0,255,255,0.5)]
+              group-hover:rotate-x-6 group-hover:rotate-y-6
+              [transform-style:preserve-3d]
+              [backface-visibility:hidden]
+            "
+          >
+            Hybrid Marketplace
+          </div>
+        </NuxtLink>
+      </section>
+
+      <!-- Logos de parceiros (maiores e responsivos) -->
+      <section class="py-12 bg-black/40 w-full">
+        <div class="max-w-5xl mx-auto flex flex-wrap justify-center items-center gap-12 px-4">
+          <img
+            src="/logos/soneium.svg"
+            alt="Soneium"
+            class="h-32 md:h-40 object-contain filter brightness-200"
+          />
+          <img
+            src="/logos/rwa.svg"
+            alt="RWA"
+            class="h-32 md:h-40 object-contain filter brightness-200"
+          />
+          <img
+            src="/logos/ena-studios.svg"
+            alt="ENA Studios"
+            class="h-32 md:h-40 object-contain filter brightness-200"
+          />
+          <img
+            src="/logos/opensea.svg"
+            alt="OpenSea"
+            class="h-32 md:h-40 object-contain filter brightness-200"
+          />
+        </div>
+      </section>
+
       <!-- Featured Cards -->
       <section class="py-16 w-full bg-black/70 overflow-visible">
         <h2 class="text-3xl text-enaYellow font-semibold text-center mb-8">
@@ -75,17 +125,22 @@ import PillarCard from '@/components/PillarCard.vue'
 import FeaturedCard from '@/components/FeaturedCard.vue'
 
 const featuredCards = [
-  { name: 'Scarlet Revenant',  faction: 'Ashen Order',   rarity: 'Common',    atk: 6, def: 5, image: '/cards/scarlet-revenant.png' },
-  { name: 'Tintan Warden',     faction: 'Zero Division',  rarity: 'Legendary', atk: 5, def: 8, image: '/cards/tintan-warden.png' },
-  { name: 'Blade Storm',       faction: 'Shinobyte',      rarity: 'Epic',      atk: 6, def: 4, image: '/cards/blade-storm.png' },
-  { name: 'Energy Core',       faction: 'Boost',          rarity: 'Neutral',   atk: 0, def: 0, image: '/cards/energy-core.png' },
-  { name: 'Nexus Vanguard',    faction: 'Nova Synth',     rarity: 'Rare',      atk: 4, def: 5, image: '/cards/nexus-vanguard.png' }
+  { name: 'Scarlet Revenant', faction: 'Ashen Order',  rarity: 'Common',    atk: 6, def: 5, image: '/cards/scarlet-revenant.png' },
+  { name: 'Tintan Warden',    faction: 'Zero Division', rarity: 'Legendary', atk: 5, def: 8, image: '/cards/tintan-warden.png' },
+  { name: 'Blade Storm',      faction: 'Shinobyte',     rarity: 'Epic',      atk: 6, def: 4, image: '/cards/blade-storm.png' },
+  { name: 'Energy Core',      faction: 'Boost',         rarity: 'Neutral',   atk: 0, def: 0, image: '/cards/energy-core.png' },
+  { name: 'Nexus Vanguard',   faction: 'Nova Synth',    rarity: 'Rare',      atk: 4, def: 5, image: '/cards/nexus-vanguard.png' }
 ]
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 .font-ena { font-family: 'Orbitron', sans-serif; }
+
+/* Perspectiva 3D para o botão */
+.perspective-500 {
+  perspective: 500px;
+}
 
 /* Animações */
 @keyframes fade-in { from { opacity: 0 } to { opacity:1 } }

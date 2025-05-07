@@ -1,3 +1,4 @@
+<!-- layouts/default.vue -->
 <template>
   <!-- Container principal: NÃO bloqueia o overflow -->
   <div class="relative w-full min-h-screen font-ena">
@@ -15,11 +16,11 @@
     <!-- Overlay escuro + Navbar + Conteúdo + Footer -->
     <div class="relative z-10 flex flex-col min-h-screen bg-black/50">
 
-      <!-- Navbar fixa no topo -->
+      <!-- Navbar fixa no topo (altura = h-16 = 4rem) -->
       <Navbar />
 
-      <!-- Conteúdo rolável -->
-      <main class="flex-grow overflow-auto">
+      <!-- Conteúdo rolável: adiciona pt-16 para que não fique por baixo da Navbar -->
+      <main class="flex-grow pt-16 overflow-auto">
         <NuxtPage />
       </main>
 
@@ -29,13 +30,12 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
-
-/* Você pode ajustar o z-index, se necessário */
+/* Nenhum outro ajuste CSS é necessário aqui */
 </style>

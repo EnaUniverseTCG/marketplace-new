@@ -2,16 +2,14 @@
   <div class="px-4 py-8 font-ena text-white min-h-screen bg-enaBlack">
     <h1 class="text-4xl text-enaYellow mb-6">Checkout</h1>
 
-    <!-- carrinho vazio -->
     <div v-if="!cart.items.length" class="text-gray-400">
-      🛒 O seu carrinho está vazio.
+      🛒 Your cart is empty.
       <NuxtLink to="/marketplace" class="text-enaYellow hover:underline">
-        Voltar ao Marketplace
+        Back to Marketplace
       </NuxtLink>
     </div>
 
     <div v-else class="space-y-8">
-      <!-- lista dos itens -->
       <div class="space-y-4">
         <div
           v-for="item in cart.items"
@@ -35,7 +33,6 @@
         </div>
       </div>
 
-      <!-- subtotais -->
       <div class="bg-gray-800 p-4 rounded-lg space-y-2">
         <div class="flex justify-between">
           <span>Subtotal</span>
@@ -51,84 +48,50 @@
         </div>
       </div>
 
-      <!-- formulário envio & pagamento -->
       <div class="bg-gray-800 p-6 rounded-lg">
-        <h3 class="text-2xl font-semibold mb-4">Informações de Envio</h3>
+        <h3 class="text-2xl font-semibold mb-4">Shipping Information</h3>
         <form @submit.prevent="submitOrder" class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              v-model="form.name"
-              type="text"
-              placeholder="Nome completo"
-              required
-              class="w-full p-3 rounded bg-gray-700 text-white"
-            />
-            <input
-              v-model="form.address"
-              type="text"
-              placeholder="Morada"
-              required
-              class="w-full p-3 rounded bg-gray-700 text-white"
-            />
-            <input
-              v-model="form.postal"
-              type="text"
-              placeholder="Código-Postal"
-              required
-              class="w-full p-3 rounded bg-gray-700 text-white"
-            />
-            <input
-              v-model="form.city"
-              type="text"
-              placeholder="Cidade"
-              required
-              class="w-full p-3 rounded bg-gray-700 text-white"
-            />
-            <input
-              v-model="form.country"
-              type="text"
-              placeholder="País"
-              required
-              class="w-full p-3 rounded bg-gray-700 text-white"
-            />
+            <input v-model="form.name" type="text" placeholder="Full Name" required
+              class="w-full p-3 rounded bg-gray-700 text-white" />
+            <input v-model="form.address" type="text" placeholder="Address" required
+              class="w-full p-3 rounded bg-gray-700 text-white" />
+            <input v-model="form.postal" type="text" placeholder="Postal Code" required
+              class="w-full p-3 rounded bg-gray-700 text-white" />
+            <input v-model="form.city" type="text" placeholder="City" required
+              class="w-full p-3 rounded bg-gray-700 text-white" />
+            <input v-model="form.country" type="text" placeholder="Country" required
+              class="w-full p-3 rounded bg-gray-700 text-white" />
           </div>
 
-          <h3 class="text-2xl font-semibold mt-6 mb-2">Método de Entrega</h3>
+          <h3 class="text-2xl font-semibold mt-6 mb-2">Delivery Method</h3>
           <div class="flex gap-6 mb-4">
             <label class="inline-flex items-center">
               <input type="radio" value="physical" v-model="form.delivery" />
-              <span class="ml-2">Só Físico</span>
+              <span class="ml-2">Physical Only</span>
             </label>
             <label class="inline-flex items-center">
               <input type="radio" value="hybrid" v-model="form.delivery" />
-              <span class="ml-2">Físico + NFT (Hybrid)</span>
+              <span class="ml-2">Physical + NFT (Hybrid)</span>
             </label>
           </div>
 
-          <!-- campo extra para carteira ETH -->
           <div v-if="form.delivery === 'hybrid'">
-            <input
-              v-model="form.wallet"
-              type="text"
-              placeholder="Ex: 0xAbC12345... (sua ETH wallet)"
+            <input v-model="form.wallet" type="text"
+              placeholder="e.g. 0xAbC12345... (your ETH wallet)"
               required
-              class="w-full p-3 rounded bg-gray-700 text-gray-400 italic"
-            />
+              class="w-full p-3 rounded bg-gray-700 text-gray-400 italic" />
           </div>
 
           <div class="text-right">
-            <button
-              type="submit"
-              class="px-6 py-3 bg-enaYellow text-black font-semibold rounded hover:brightness-90 transition"
-            >
-              Finalizar Encomenda
+            <button type="submit"
+              class="px-6 py-3 bg-enaYellow text-black font-semibold rounded hover:brightness-90 transition">
+              Place Order
             </button>
           </div>
         </form>
       </div>
     </div>
-
-    <Footer />
   </div>
 </template>
 
@@ -136,7 +99,6 @@
 import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
-import Footer from '@/components/Footer.vue'
 
 const cart = useCartStore()
 const router = useRouter()
@@ -158,13 +120,12 @@ const form = reactive({
 })
 
 function submitOrder() {
-  alert(`✅ Encomenda recebida!
-Nome: ${form.name}
-Morada: ${form.address}, ${form.postal}, ${form.city}, ${form.country}
-Método: ${form.delivery === 'physical' ? 'Só Físico' : 'Hybrid (+ NFT)'}
+  alert(`✅ Order placed!
+Name: ${form.name}
+Address: ${form.address}, ${form.postal}, ${form.city}, ${form.country}
+Delivery: ${form.delivery === 'physical' ? 'Physical Only' : 'Hybrid (+ NFT)'}
 ${form.delivery === 'hybrid' ? `Wallet: ${form.wallet}` : ''}
 Total: ${total.value.toFixed(2)} EUR`)
-
   cart.clearCart()
   router.push('/marketplace')
 }

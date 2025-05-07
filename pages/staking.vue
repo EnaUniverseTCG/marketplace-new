@@ -76,8 +76,6 @@
         @claim="onTokenClaim"
       />
     </div>
-
-    <Footer class="mt-8" />
   </div>
 </template>
 
@@ -86,7 +84,6 @@ import { ref, computed } from 'vue'
 import { useAuth } from '~/composables/useAuth'
 import NFTStakingPanel from '~/components/NFTStakingPanel.vue'
 import TokenStakingPanel from '~/components/TokenStakingPanel.vue'
-import Footer from '~/components/Footer.vue'
 
 const { userAddress, connect, disconnect } = useAuth()
 const tab = ref<'nft'|'token'>('nft')
@@ -94,15 +91,12 @@ const pendingRewards = computed(() => 30)  // stub
 
 const lastUpdated = new Date().toLocaleString('pt-PT')
 
-// Core actions:
 function connectWallet() {
   connect().catch(e => alert(e.message))
 }
 function disconnectWallet() {
   disconnect()
 }
-
-// stubs for panel events:
 function onNftStake()      { alert('Staking NFTs …') }
 function onNftUnstake()    { alert('Unstaking NFTs …') }
 function onNftClaim()      { alert('Claiming NFT rewards …') }
@@ -111,7 +105,6 @@ function onTokenUnstake()  { alert('Unstaking $ENA tokens …') }
 function onTokenClaim()    { alert('Claiming $ENA rewards …') }
 
 function refreshAll() {
-  // re-fetch real data
   alert('Refreshing your staking dashboard …')
 }
 </script>
