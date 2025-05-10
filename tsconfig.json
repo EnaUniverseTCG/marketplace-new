@@ -1,4 +1,10 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  // herda todas as configurações geradas pelo Nuxt
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    // garante que o TS resolve pacotes em node_modules
+    "moduleResolution": "node",
+    // inclui tipos do Node e do Vite
+    "types": ["node", "vite/client"]
+  }
 }

@@ -43,12 +43,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAuth } from '~/composables/useAuth'
+import { ref } from 'vue'
+import { useRouter, useAuth } from '#imports'
 
-const { user, signIn, signUp } = useAuth()
 const router = useRouter()
+const { signIn, signUp } = useAuth()
 
 const isLogin = ref(true)
 const form = ref({ email: '', password: '' })
@@ -58,23 +57,21 @@ const error = ref<string|null>(null)
 async function onSubmit() {
   loading.value = true
   error.value = null
+
   try {
     if (isLogin.value) {
       await signIn(form.value.email, form.value.password)
     } else {
       await signUp(form.value.email, form.value.password)
     }
+    // se chegou aqui sem lançar erro, redireciona:
+    router.push('/profile')
   } catch (err: any) {
-    error.value = err.message
+    error.value = err.message || 'Erro ao autenticar'
   } finally {
     loading.value = false
   }
 }
-
-// quando `user` mudar para um objeto, redireciona pra home
-watch(user, u => {
-  if (u) router.push('/')
-})
 </script>
 
 <style scoped>
