@@ -64,7 +64,7 @@ async function onSubmit() {
     } else {
       await signUp(form.value.email, form.value.password)
     }
-    // se chegou aqui sem lançar erro, redireciona:
+    // redireciona diretamente para /profile
     router.push('/profile')
   } catch (err: any) {
     error.value = err.message || 'Erro ao autenticar'
