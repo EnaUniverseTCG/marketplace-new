@@ -72,6 +72,7 @@
               <li><strong>Shinobyte:</strong> Fast attackers with combo potential</li>
               <li><strong>Nova Synth:</strong> High-tech units with powerful effects</li>
               <li><strong>Neutral:</strong> Support cards that work with any faction</li>
+              <li><strong>ENA Mana (Resource):</strong> Special cards that generate +3 ENA or more</li>
             </ul>
           </div>
         </div>
@@ -89,17 +90,15 @@
             the ENA Core managed energy flow, knowledge access, peace treaties, and
             resource control across the entire digital-physical continuum.
           </p>
-          <p class="text-gray-300">
-            But then, it broke.
-          </p>
+          <p class="text-gray-300">But then, it broke.</p>
           <h4 class="text-lg text-enaYellow font-semibold">The Four That Remained</h4>
           <div class="grid lg:grid-cols-2 gap-6">
-            <div class="border border-green-500 rounded-lg p-4">
-              <h5 class="font-semibold text-green-500">Shinobyte</h5>
+            <div class="border border-blue-500 rounded-lg p-4">
+              <h5 class="font-semibold text-blue-500">Shinobyte</h5>
               <p class="text-gray-300">Cyber-samurais reclaiming the true Core.</p>
             </div>
-            <div class="border border-purple-500 rounded-lg p-4">
-              <h5 class="font-semibold text-purple-500">Nova Synth</h5>
+            <div class="border border-green-500 rounded-lg p-4">
+              <h5 class="font-semibold text-green-500">Nova Synth</h5>
               <p class="text-gray-300">Techno-organic evolution accelerators.</p>
             </div>
             <div class="border border-red-600 rounded-lg p-4">
@@ -122,23 +121,24 @@
 
       <!-- RULES -->
       <div v-if="tab==='rules'" class="space-y-6">
-        <!-- (mantido conforme última versão enviada) -->
+        <!-- Objective -->
         <div class="bg-gray-900 p-6 rounded-lg space-y-4">
           <h2 class="text-2xl text-enaYellow font-semibold">📜 Official Rules of ENA Universe TCG</h2>
           <h3 class="text-xl text-enaYellow font-semibold">Objective of the Game</h3>
           <p class="text-gray-300">
-            The goal of the game is to reduce your opponent’s life points to zero by playing
-            units, spells, and abilities. Players may manipulate their hands wisely and adapt
-            their decks and strategies to outplay each other.
+            The goal is to reduce your opponent’s life points to zero by playing
+            units, spells, and abilities. Adapt strategies to outplay your foe.
           </p>
         </div>
+
+        <!-- Faction Highlights -->
         <div class="grid lg:grid-cols-2 gap-6">
-          <div class="border border-green-400 rounded-lg p-4">
-            <h4 class="text-lg font-semibold text-green-400">Shinobyte</h4>
+          <div class="border border-blue-400 rounded-lg p-4">
+            <h4 class="text-lg font-semibold text-blue-400">Shinobyte</h4>
             <p class="text-gray-300">Fast attackers & combo-samurai.</p>
           </div>
-          <div class="border border-purple-400 rounded-lg p-4">
-            <h4 class="text-lg font-semibold text-purple-400">Nova Synth</h4>
+          <div class="border border-green-400 rounded-lg p-4">
+            <h4 class="text-lg font-semibold text-green-400">Nova Synth</h4>
             <p class="text-gray-300">AI-borne units with logic & adaptation.</p>
           </div>
           <div class="border border-red-600 rounded-lg p-4">
@@ -150,21 +150,26 @@
             <p class="text-gray-300">Tactical control & survival.</p>
           </div>
         </div>
+
+        <!-- Deck Construction Rules -->
         <div class="bg-gray-900 p-6 rounded-lg space-y-4">
           <h4 class="text-lg text-enaYellow font-semibold">Deck Construction Rules</h4>
           <ul class="list-disc list-inside space-y-2 text-gray-300">
             <li>Decks must contain exactly 40 cards.</li>
-            <li>No more than 3 copies of the same card.</li>
-            <li>Only cards from chosen faction(s) are legal.</li>
-            <li>Cards outside your faction(s) are illegal.</li>
-            <li>No duplicates of legendary cards.</li>
+            <li>You may include up to 25 Faction cards.</li>
+            <li>You may include up to 16 Neutral cards.</li>
+            <li>Decks must include a minimum of 6 ENA Mana cards.</li>
+            <li>No more than 3 copies of any non-legendary card.</li>
+            <li>Only 1 copy of each Legendary card allowed per deck.</li>
           </ul>
         </div>
+
+        <!-- Game Structure & Turn Phases -->
         <div class="bg-gray-900 p-6 rounded-lg space-y-4">
           <h4 class="text-lg text-enaYellow font-semibold">Game Structure & Turn Phases</h4>
           <ol class="list-decimal list-inside space-y-2 text-gray-300">
-            <li><strong>Draw Phase:</strong> Player draws 1 card.</li>
-            <li><strong>Mana Phase:</strong> Player gains 1 mana cube (max 10).</li>
+            <li><strong>Draw Phase:</strong> Draw 1 card.</li>
+            <li><strong>Mana Phase:</strong> Gain 1 mana cube (max 10).</li>
             <li><strong>Action Phase:</strong>
               <ul class="list-disc list-inside ml-4 space-y-1">
                 <li>Summon units if enough mana.</li>
@@ -172,44 +177,50 @@
                 <li>Execute special card actions.</li>
               </ul>
             </li>
-            <li><strong>Attack Phase:</strong> Player may attack opponent’s units or directly.</li>
-            <li><strong>End Phase:</strong> Discard down to max hand size (7 cards).</li>
+            <li><strong>Attack Phase:</strong>  Units can only attack the opponent directly if they have no Units on the field. Otherwise, you must target enemy Units first.</li>
+            <li><strong>End Phase:</strong> Discard down to max hand size (7).</li>
           </ol>
         </div>
+
+        <!-- Mana System -->
         <div class="bg-gray-900 p-6 rounded-lg space-y-4">
           <h4 class="text-lg text-enaYellow font-semibold">Mana System</h4>
           <ul class="list-disc list-inside space-y-2 text-gray-300">
-            <li>Mana cubes generate 1 mana each turn, up to a maximum of 10.</li>
-            <li>Unused mana carries over between turns.</li>
-            <li>Mana is spent to play cards & abilities.</li>
-            <li>Special mana icons exist on certain cards & powers.</li>
+            <li>Mana cubes generate 1 mana each turn (up to 10).</li>
+            <li>Unused mana carries over.</li>
+            <li>Mana spent to play cards & abilities.</li>
+            <li>Special mana icons on certain cards.</li>
           </ul>
         </div>
+
+        <!-- Card Types & Their Roles -->
         <div class="bg-gray-900 p-6 rounded-lg space-y-4">
           <h4 class="text-lg text-enaYellow font-semibold">Card Types & Their Roles</h4>
           <div class="grid lg:grid-cols-2 gap-6">
             <div class="border border-gray-600 rounded-lg p-4">
               <h5 class="font-semibold">Units (Characters & Creatures)</h5>
-              <p class="text-gray-300">Spend mana to recruit. Have ATK & HP stats. Can move & attack.</p>
+              <p class="text-gray-300">Recruit with mana. Have ATK & HP. Can move & attack.</p>
             </div>
             <div class="border border-gray-600 rounded-lg p-4">
               <h5 class="font-semibold">Spells (One-time Effects)</h5>
-              <p class="text-gray-300">Cast to deal damage, heal, buff, or disrupt.</p>
+              <p class="text-gray-300">Damage, heal, buff, or disrupt.</p>
             </div>
             <div class="border border-gray-600 rounded-lg p-4">
               <h5 class="font-semibold">Equipment & Boosts</h5>
-              <p class="text-gray-300">Provide stat modifiers & passive bonuses.</p>
+              <p class="text-gray-300">Stat modifiers & passive bonuses.</p>
             </div>
             <div class="border border-gray-600 rounded-lg p-4">
               <h5 class="font-semibold">Special Mana</h5>
-              <p class="text-gray-300">Generates extra resources or triggers abilities.</p>
+              <p class="text-gray-300">Generates extra resources or triggers effects.</p>
             </div>
           </div>
         </div>
+
+        <!-- Win Conditions -->
         <div class="bg-gray-900 p-6 rounded-lg space-y-4">
           <h4 class="text-lg text-enaYellow font-semibold">Win Conditions</h4>
           <ul class="list-disc list-inside space-y-2 text-gray-300">
-            <li>Reduce opponent’s life points to zero.</li>
+            <li>Reduce opponent’s life 20 points to zero.</li>
             <li>If a player cannot draw at the start of their turn.</li>
           </ul>
         </div>
@@ -220,17 +231,17 @@
         <div class="bg-gray-900 p-6 rounded-lg space-y-4">
           <h2 class="text-2xl text-enaYellow font-semibold">⚡ The Future of ENA Universe TCG</h2>
           <p class="text-gray-300">
-            ENA Universe TCG is the first AI-designed trading card game, balancing strategy,
+            ENA Universe TCG is the first AI‐designed trading card game, balancing strategy,
             creativity, and deep mechanics. As the game evolves, new expansions will be
-            developed using on-chain data, ensuring continuous fairness and innovation.
+            developed using on‐chain data, ensuring continuous fairness and innovation.
           </p>
         </div>
         <div class="space-y-6">
           <div class="border-l-4 border-green-500 bg-gray-900 p-4 rounded-lg space-y-2">
             <h4 class="text-xl text-enaYellow font-semibold">Phase 1: Prototype (Current)</h4>
             <ul class="list-disc list-inside text-gray-300 space-y-1">
-              <li>Browser-based gameplay with core mechanics</li>
-              <li>Initial card set with four factions</li>
+              <li>Browser-based core mechanics</li>
+              <li>Initial card set</li>
               <li>Single-player AI opponent</li>
               <li>Basic wallet connection</li>
             </ul>
@@ -238,38 +249,36 @@
           <div class="border-l-4 border-purple-500 bg-gray-900 p-4 rounded-lg space-y-2">
             <h4 class="text-xl text-enaYellow font-semibold">Phase 2: Expansion</h4>
             <ul class="list-disc list-inside text-gray-300 space-y-1">
-              <li>Full deck builder with collection management</li>
-              <li>Expanded card pool (180+ cards)</li>
+              <li>Full deck builder</li>
+              <li>Expanded pool (180+ cards)</li>
               <li>Multiplayer matchmaking</li>
-              <li>NFT integration for card ownership</li>
-              <li>Advanced visual effects and animations</li>
+              <li>NFT ownership integration</li>
+              <li>Enhanced visuals</li>
             </ul>
           </div>
           <div class="border-l-4 border-blue-500 bg-gray-900 p-4 rounded-lg space-y-2">
             <h4 class="text-xl text-enaYellow font-semibold">Phase 3: Full Release</h4>
             <ul class="list-disc list-inside text-gray-300 space-y-1">
-              <li>Competitive ranked ladder system</li>
-              <li>Seasonal tournaments with prizes</li>
-              <li>Mobile app release</li>
-              <li>Marketplace for trading cards</li>
+              <li>Ranked ladder</li>
+              <li>Seasonal tournaments</li>
+              <li>Mobile app</li>
+              <li>Card marketplace</li>
               <li>$ENA token integration</li>
             </ul>
           </div>
           <div class="border-l-4 border-yellow-500 bg-gray-900 p-4 rounded-lg space-y-2">
-            <h4 class="text-xl text-enaYellow font-semibold">Phase 4: Metaverse Integration</h4>
+            <h4 class="text-xl text-enaYellow font-semibold">Phase 4: Metaverse</h4>
             <ul class="list-disc list-inside text-gray-300 space-y-1">
-              <li>3D immersive gameplay experience</li>
-              <li>Virtual tournaments in metaverse arenas</li>
+              <li>3D immersive arenas</li>
+              <li>Virtual tournaments</li>
               <li>Cross-platform play</li>
-              <li>AI-driven metagame balancing</li>
-              <li>Player-created content and custom tournaments</li>
+              <li>AI-driven balance</li>
+              <li>Player-created content</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Footer simples (já aparece no layout principal) -->
   </div>
 </template>
 
@@ -281,5 +290,5 @@ const tab = ref<'about'|'lore'|'rules'|'future'>('about')
 </script>
 
 <style scoped>
-/* se quiseres afinar alguma cor ou espaçamento, faz aqui */
+/* Ajustes de estilo adicionais, se necessário */
 </style>

@@ -32,16 +32,16 @@
           to="/about"
         />
         <PillarCard
-          title="OpenSea Collection"
-          description="Explore collectible NFTs & exclusive free mints."
+          title="Redeem"
+          description="Claim your rewards & benefits."
           color="green"
-          to="https://opensea.io/collection/ena-universe"
+          to="/redeem"
         />
         <PillarCard
-          title="Staking & Tokenomics"
-          description="Stake your NFTs & $ENA to earn rewards."
+          title="Staking"
+          description="Stake your NFTs to earn rewards."
           color="red"
-          to="/tokenomics"
+          to="/staking"
         />
         <PillarCard
           title="Buy $ENA"
@@ -53,7 +53,7 @@
 
       <!-- Botão 3D “Hybrid Marketplace” -->
       <section class="py-8 w-full">
-        <NuxtLink to="/marketplace" class="group perspective-500">
+        <NuxtLink to="https://opensea.io/collection/ena-universe" class="group perspective-500" target="_blank">
           <div
             class="
               mx-auto block
@@ -125,11 +125,11 @@ import PillarCard from '@/components/PillarCard.vue'
 import FeaturedCard from '@/components/FeaturedCard.vue'
 
 const featuredCards = [
-  { name: 'Scarlet Revenant', faction: 'Ashen Order',  rarity: 'Common',    atk: 6, def: 5, image: '/cards/scarlet-revenant.png' },
-  { name: 'Tintan Warden',    faction: 'Zero Division', rarity: 'Legendary', atk: 5, def: 8, image: '/cards/tintan-warden.png' },
+  { name: ' Crimson Ronin', faction: 'Ashen Order',  rarity: 'Common',    atk: 5, def: 5, image: '/cards/crimson-ronin.png' },
+  { name: 'Tintan Warden',    faction: 'Zero Division', rarity: 'Legendary', atk: 5, def: 7, image: '/cards/tintan-warden.png' },
   { name: 'Blade Storm',      faction: 'Shinobyte',     rarity: 'Epic',      atk: 6, def: 4, image: '/cards/blade-storm.png' },
-  { name: 'Energy Core',      faction: 'Boost',         rarity: 'Neutral',   atk: 0, def: 0, image: '/cards/energy-core.png' },
-  { name: 'Nexus Vanguard',   faction: 'Nova Synth',    rarity: 'Rare',      atk: 4, def: 5, image: '/cards/nexus-vanguard.png' }
+  { name: 'Emp Blast',      faction: 'Boost',         rarity: 'Neutral',   atk: 0, def: 0, image: '/cards/emp-blast.png' },
+  { name: 'Overseer',   faction: 'Nova Synth',    rarity: 'Rare',      atk: 3, def: 6, image: '/cards/overseer.png' }
 ]
 </script>
 

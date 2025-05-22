@@ -5,12 +5,12 @@
       ← Back to Home
     </NuxtLink>
 
-    <!-- Título -->
+    <!-- Title -->
     <h1 class="text-4xl font-bold text-enaYellow mb-6 text-center">
       ENA Universe Economy
     </h1>
 
-    <!-- Abas Overview / Tokenomics -->
+    <!-- Tabs Overview / Tokenomics -->
     <div class="flex border-b border-gray-700 mb-8">
       <button
         @click="tab = 'overview'"
@@ -28,8 +28,9 @@
       <!-- OVERVIEW -->
       <div v-if="tab === 'overview'" class="space-y-6">
         <!-- ENA Token & NFT Cards panels -->
-        <!-- ENA Token -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+          <!-- ENA Token Panel -->
           <div class="border border-enaYellow rounded-lg p-6 space-y-4">
             <h2 class="text-2xl text-enaYellow font-semibold">ENA Token ($ENA)</h2>
             <p class="text-gray-300">The native currency of the ENA Universe ecosystem.</p>
@@ -42,16 +43,12 @@
             </div>
             <div class="space-y-1">
               <p class="text-sm text-gray-400">Blockchain:</p>
-              <p class="text-lg font-semibold">Soneium (SNE)</p>
+              <p class="text-lg font-semibold">Soneium</p>
             </div>
-            <button
-              class="w-full mt-4 px-4 py-2 bg-enaYellow text-black font-semibold rounded-lg hover:brightness-90"
-              @click="$router.push('/staking')"
-            >
-              Connect Wallet
-            </button>
+            <!-- REMOVED Connect Wallet button -->
           </div>
-          <!-- NFT Cards -->
+
+          <!-- NFT Cards Panel -->
           <div class="border border-enaYellow rounded-lg p-6 space-y-4">
             <h2 class="text-2xl text-enaYellow font-semibold">NFT Cards</h2>
             <p class="text-gray-300">Collectible digital assets with real utility.</p>
@@ -65,15 +62,17 @@
               <button class="w-full px-4 py-2 bg-gray-800 text-gray-300 rounded hover:bg-gray-700">
                 Legendary Cards<br><span class="text-xs">Higher Rewards</span>
               </button>
-              <button
-                class="w-full col-span-2 px-4 py-2 bg-enaYellow text-black font-semibold rounded hover:brightness-90"
-                @click="$router.push('/marketplace')"
+              <a
+                href="https://opensea.io/collection/ena-universe"
+                target="_blank"
+                class="w-full col-span-2 inline-block text-center px-4 py-2 bg-enaYellow text-black font-semibold rounded hover:brightness-90"
               >
-                Explore Cards
-              </button>
+                Explore Cards on OpenSea
+              </a>
             </div>
           </div>
         </div>
+
         <!-- Blockchain Implementation & Airdrop -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="border border-enaYellow rounded-lg p-6 space-y-4">
@@ -180,12 +179,13 @@
           </div>
 
           <div class="mt-8 text-center">
-            <button
-              class="px-6 py-3 bg-enaYellow text-black font-semibold rounded-lg hover:brightness-90"
-              @click="$router.push('/staking')"
+            <a
+              href="https://dapp-omega-virid.vercel.app/"
+              target="_blank"
+              class="px-6 py-3 bg-enaYellow text-black font-semibold rounded-lg hover:brightness-90 inline-block"
             >
               Stake $ENA
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -220,5 +220,5 @@ const legend = [
 </script>
 
 <style scoped>
-/* estilos adicionais, se necessário */
+/* add your existing styles here */
 </style>

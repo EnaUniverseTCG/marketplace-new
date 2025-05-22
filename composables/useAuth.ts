@@ -1,81 +1,55 @@
 // composables/useAuth.ts
-import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { useNuxtApp } from '#imports'
-import { useRouter } from 'vue-router'
-import type { Session, User } from '@supabase/supabase-js'
-import { Web3Provider } from '@ethersproject/providers'
+import { ref } from 'vue'
+import { Web3Provider, JsonRpcSigner } from '@ethersproject/providers'
 
 export function useAuth() {
-  const { $supabase } = useNuxtApp()
-  const router = useRouter()
+  const userAddress = ref<string|null>(null)
+  const provider    = ref<Web3Provider|null>(null)
+  const signer      = ref<JsonRpcSigner|null>(null)
 
-  const user = ref<User | null>(null)
-  const session = ref<Session | null>(null)
-  const userAddress = ref<string | null>(null)
-
-  // fallback to any para o subscription, evita erro de tipo
-  let subscription: any
-
-  onMounted(async () => {
-    // pega a sessão atual
-    const { data: { session: s } } = await $supabase.auth.getSession()
-    session.value = s
-    user.value = s?.user ?? null
-
-    // escuta mudanças de auth
-    const { data: listener } = $supabase.auth.onAuthStateChange((_event, newSession) => {
-      session.value = newSession
-      user.value = newSession?.user ?? null
-    })
-    subscription = listener.subscription
-  })
-
-  onUnmounted(() => {
-    subscription?.unsubscribe?.()
-  })
-
-  // --- Web2 methods ---
-  async function signIn(email: string, password: string) {
-    const { error } = await $supabase.auth.signInWithPassword({ email, password })
-    if (error) throw error
-  }
-
-  async function signUp(email: string, password: string) {
-    const { error } = await $supabase.auth.signUp({ email, password })
-    if (error) throw error
-  }
-
-  async function signOut() {
-    await $supabase.auth.signOut()
-    user.value = null
-    session.value = null
-    router.push('/auth')
-  }
-
-  // --- Web3 methods ---
   async function connect() {
-    if (!window.ethereum) {
+    if (!(window as any).ethereum) {
       throw new Error('No crypto wallet found')
     }
-    const provider = new Web3Provider(window.ethereum as any)
-    await provider.send('eth_requestAccounts', [])
-    const signer = provider.getSigner()
-    userAddress.value = await signer.getAddress()
+    const ethereum = (window as any).ethereum
+
+    //  → Primeiro, pede para o MetaMask usar/adicionar a rede Soneium:
+    try {
+      await ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+          chainId:        '0x74C',             // 1868 em hex
+          chainName:      'Soneium Mainnet',
+          nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+          rpcUrls:        ['https://rpc.soneium.org/'],
+          blockExplorerUrls: ['https://soneium.blockscout.com']
+        }]
+      })
+    } catch (addError) {
+      // se o utilizador cancelar ou já existir, ignoramos
+      console.warn('Network add/switch failed', addError)
+    }
+
+    //  → Agora sim, solicitamos contas:
+    const web3 = new Web3Provider(ethereum)
+    await web3.send('eth_requestAccounts', [])
+    provider.value = web3
+    signer.value   = web3.getSigner()
+    userAddress.value = await signer.value.getAddress()
+
+    console.log('Connected address:', userAddress.value)
   }
 
   function disconnect() {
     userAddress.value = null
+    provider.value    = null
+    signer.value      = null
   }
 
   return {
-    // exposição reativa
-    user:        computed(() => user.value),
-    session:     computed(() => session.value),
-    userAddress: computed(() => userAddress.value),
-    // métodos
-    signIn,
-    signUp,
-    signOut,
+    userAddress,
+    provider,
+    signer,
     connect,
     disconnect,
   }

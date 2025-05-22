@@ -60,7 +60,7 @@
             <span class="text-sm text-gray-400 ml-2">(Physical + Digital Twin)</span>
           </div>
           <p class="text-gray-300 mb-4">
-            Every Hybrid comes with a digital on‑chain twin. Use it in‑game,
+            Every Hybrid comes with a digital on-chain twin. Use it in-game,
             stake it for daily rewards, or trade it on OpenSea!
           </p>
           <ul class="list-disc list-inside text-gray-300 space-y-2">
@@ -81,45 +81,64 @@
             <span class="text-enaYellow text-2xl animate-pulse">①</span>
             <div>
               <strong>Install a Web3 wallet</strong> (e.g. MetaMask).
-              <NuxtLink to="/play" class="text-enaYellow underline ml-1">
+              <a
+                href="https://metamask.io/download"
+                target="_blank"
+                class="text-enaYellow underline ml-1"
+              >
                 Learn how →
-              </NuxtLink>
+              </a>
             </div>
           </li>
           <li class="flex items-start space-x-4">
             <span class="text-enaYellow text-2xl animate-pulse">②</span>
             <div>
               <strong>Add the Soneium network</strong><br />
-              RPC URL: <code>https://rpc.soneium.org</code><br />
-              Chain ID: <code>1234</code>
+              Parent chain: <code>Ethereum</code><br />
+              RPC URL: <code>https://rpc.soneium.org/</code><br />
+              Chain ID: <code>1868</code><br />
+              Currency Symbol: <code>ETH</code><br />
+              Block Explorer: 
+              <a
+                href="https://soneium.blockscout.com/"
+                target="_blank"
+                class="text-enaYellow underline"
+              >
+                soneium.blockscout.com
+              </a>
             </div>
           </li>
           <li class="flex items-start space-x-4">
             <span class="text-enaYellow text-2xl animate-pulse">③</span>
             <div>
-              <strong>Copy your wallet address</strong> (click “Copy Address”
-              in your wallet extension).
+              <strong>Buy ENA Universe NFTs</strong> on 
+              <a
+                href="https://opensea.io/collection/ena-universe"
+                target="_blank"
+                class="text-enaYellow underline"
+              >
+                OpenSea
+              </a>
+              .
             </div>
           </li>
           <li class="flex items-start space-x-4">
             <span class="text-enaYellow text-2xl animate-pulse">④</span>
             <div>
-              <strong>At Checkout</strong> selecione “Hybrid” e cole seu
-              endereço para receber a versão física e digital.
+              <strong>Redeem or stake</strong> your digital twin for $ENA rewards.
             </div>
           </li>
           <li class="flex items-start space-x-4">
             <span class="text-enaYellow text-2xl animate-pulse">⑤</span>
             <div>
-              <strong>Verify on OpenSea</strong> Conecte-se com MetaMask em
+              <strong>Verify on OpenSea</strong> — connect with MetaMask at 
               <a
                 href="https://opensea.io"
                 target="_blank"
                 class="text-enaYellow underline"
               >
                 opensea.io
-              </a>
-              .
+              </a>.
             </div>
           </li>
         </ol>
@@ -145,7 +164,7 @@
             <p
               class="text-gray-300 text-sm z-10 relative group-hover:text-black transition"
             >
-              Earn up to 10 $ENA/day per card just by staking your digital twin.
+              Earn up to 6 $ENA/day per card just by staking your digital twin.
             </p>
           </div>
           <div
@@ -183,19 +202,20 @@
 
       <!-- CTA final -->
       <div class="text-center mt-16">
-        <NuxtLink
-          to="/marketplace"
+        <a
+          href="https://opensea.io/collection/ena-universe"
+          target="_blank"
           class="inline-block px-12 py-5 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold rounded-full shadow-2xl transform hover:scale-105 transition animate-pulse"
         >
           EXPLORE HYBRID CARDS
-        </NuxtLink>
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// (Pode adicionar aqui lógica para futuras interações)
+/* no script logic needed for now */
 </script>
 
 <style scoped>

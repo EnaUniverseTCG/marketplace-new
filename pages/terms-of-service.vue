@@ -18,9 +18,7 @@
           <li><NuxtLink to="/play" class="hover:text-white">Play</NuxtLink></li>
           <li><NuxtLink to="/tokenomics" class="hover:text-white">Tokenomics</NuxtLink></li>
           <li>
-            <a href="https://t.me/EnaUniverse" target="_blank" class="hover:text-white">
-              Contact Us
-            </a>
+            <a href="https://t.me/EnaUniverse" target="_blank" class="hover:text-white">Contact Us</a>
           </li>
         </ul>
       </div>
@@ -30,23 +28,13 @@
         <h3 class="text-white font-semibold mb-2">Community</h3>
         <ul class="space-y-1 text-sm">
           <li>
-            <a href="https://t.me/EnaUniverse" target="_blank" class="hover:text-white">
-              Telegram
-            </a>
+            <a href="https://t.me/EnaUniverse" target="_blank" class="hover:text-white">Telegram</a>
           </li>
           <li>
-            <a href="https://x.com/enauniverseTCG" target="_blank" class="hover:text-white">
-              X (formerly Twitter)
-            </a>
+            <a href="https://x.com/enauniverseTCG" target="_blank" class="hover:text-white">X (formerly Twitter)</a>
           </li>
           <li>
-            <a
-              href="https://opensea.io/collection/ena-universe"
-              target="_blank"
-              class="hover:text-white"
-            >
-              OpenSea
-            </a>
+            <a href="https://opensea.io/collection/ena-universe" target="_blank" class="hover:text-white">OpenSea</a>
           </li>
         </ul>
       </div>
@@ -83,11 +71,7 @@
             </a>
           </li>
           <li>
-            <a
-              href="https://soneium.blockscout.com/"
-              target="_blank"
-              class="hover:text-white"
-            >
+            <a href="https://soneium.blockscout.com/" target="_blank" class="hover:text-white">
               Soneium Blockscout
             </a>
           </li>
@@ -98,6 +82,11 @@
       <div>
         <h3 class="text-white font-semibold mb-2">Legal</h3>
         <ul class="space-y-1 text-sm">
+          <li>
+            <NuxtLink to="/terms-and-services" class="hover:text-white">
+              Terms of Service
+            </NuxtLink>
+          </li>
           <li>
             <NuxtLink to="/privacy-policy" class="hover:text-white">
               Privacy Policy
@@ -112,6 +101,7 @@
       </div>
     </div>
 
+    <!-- Credits -->
     <div class="mt-12 border-t border-gray-700 pt-6 pb-4 text-center text-xs text-gray-500">
       &copy; {{ new Date().getFullYear() }} ENA Universe. All rights reserved.
     </div>

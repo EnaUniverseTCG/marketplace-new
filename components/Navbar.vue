@@ -4,42 +4,35 @@
       <!-- Logo -->
       <NuxtLink to="/" class="text-2xl font-bold text-enaYellow">ENA Universe</NuxtLink>
 
-      <!-- Desktop links -->
-      <ul class="hidden md:flex items-center space-x-6">
-        <li><NuxtLink to="/"            class="hover:text-enaYellow">Home</NuxtLink></li>
-        <li><NuxtLink to="/play"        class="hover:text-enaYellow">Play</NuxtLink></li>
-        <li><NuxtLink to="/marketplace" class="hover:text-enaYellow">Marketplace</NuxtLink></li>
-        <li><NuxtLink to="/staking"     class="hover:text-enaYellow">Staking</NuxtLink></li>
-        <li><NuxtLink to="/buy-ena"     class="hover:text-enaYellow">Buy $ENA</NuxtLink></li>
-        <li><NuxtLink to="/card-stats"  class="hover:text-enaYellow">CardStats</NuxtLink></li>
-        <li><NuxtLink to="/tokenomics"  class="hover:text-enaYellow">Tokenomics</NuxtLink></li>
-        <li><NuxtLink to="/about"       class="hover:text-enaYellow">About</NuxtLink></li>
-        <li class="relative">
-          <NuxtLink to="/cart" class="hover:text-enaYellow">
-            🛒
-            <span
-              v-if="cart.totalItems"
-              class="absolute -top-2 -right-3 inline-flex items-center justify-center px-2 py-1 text-xs font-bold text-black bg-enaYellow rounded-full"
-            >
-              {{ cart.totalItems }}
-            </span>
-          </NuxtLink>
-        </li>
-        <li>
-          <template v-if="user">
-            <button
-              @click="onSignOut"
-              class="px-3 py-1 border border-gray-500 rounded hover:bg-enaYellow hover:text-enaBlack transition"
-            >Sair</button>
-          </template>
-          <template v-else>
-            <NuxtLink
-              to="/auth"
-              class="px-3 py-1 border border-gray-500 rounded hover:bg-enaYellow hover:text-enaBlack transition"
-            >Entrar</NuxtLink>
-          </template>
-        </li>
-      </ul>
+      <!-- Desktop links + Launch DAPP -->
+      <div class="flex items-center space-x-6">
+        <ul class="hidden md:flex items-center space-x-6">
+          <li><NuxtLink to="/" class="hover:text-enaYellow">Home</NuxtLink></li>
+          <li><NuxtLink to="/play" class="hover:text-enaYellow">Play</NuxtLink></li>
+          <!-- Marketplace now points to OpenSea collection -->
+          <li>
+            <a
+              href="https://opensea.io/collection/ena-universe"
+              target="_blank"
+              class="hover:text-enaYellow"
+            >Marketplace</a>
+          </li>
+          <li><NuxtLink to="/staking" class="hover:text-enaYellow">Staking</NuxtLink></li>
+          <li><NuxtLink to="/card-stats" class="hover:text-enaYellow">CardStats</NuxtLink></li>
+          <li><NuxtLink to="/tokenomics" class="hover:text-enaYellow">Tokenomics</NuxtLink></li>
+          <li><NuxtLink to="/about" class="hover:text-enaYellow">About</NuxtLink></li>
+        </ul>
+
+        <!-- Launch DAPP Button -->
+        <a
+          href="https://dapp-omega-virid.vercel.app/"
+          target="_blank"
+          class="relative inline-block px-4 py-1 font-semibold text-base rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 text-enaBlack transform transition-all duration-300 hover:scale-105 animate-pulse hover:animate-none shadow-lg"
+        >
+          Launch DAPP
+          <span class="absolute inset-0 rounded-xl border-2 border-yellow-300 opacity-75 animate-ping"></span>
+        </a>
+      </div>
 
       <!-- Mobile hamburger -->
       <button @click="open = !open" class="md:hidden text-white">
@@ -59,34 +52,31 @@
     <!-- Mobile dropdown -->
     <transition name="fade">
       <ul v-if="open" class="md:hidden bg-enaBlack/95 text-white space-y-2 px-4 py-4">
-        <li><NuxtLink to="/"            @click="open = false">Home</NuxtLink></li>
-        <li><NuxtLink to="/play"        @click="open = false">Play</NuxtLink></li>
-        <li><NuxtLink to="/marketplace" @click="open = false">Marketplace</NuxtLink></li>
-        <li><NuxtLink to="/staking"     @click="open = false">Staking</NuxtLink></li>
-        <li><NuxtLink to="/buy-ena"     @click="open = false">Buy $ENA</NuxtLink></li>
-        <li><NuxtLink to="/card-stats"  @click="open = false">CardStats</NuxtLink></li>
-        <li><NuxtLink to="/tokenomics"  @click="open = false">Tokenomics</NuxtLink></li>
-        <li><NuxtLink to="/about"       @click="open = false">About</NuxtLink></li>
+        <li><NuxtLink to="/" @click="open = false">Home</NuxtLink></li>
+        <li><NuxtLink to="/play" @click="open = false">Play</NuxtLink></li>
         <li>
-          <NuxtLink to="/cart" @click="open = false" class="relative">
-            🛒 <span v-if="cart.totalItems"
-                     class="absolute -top-2 -right-3 inline-flex items-center justify-center px-2 py-1 text-xs font-bold text-black bg-enaYellow rounded-full">
-                   {{ cart.totalItems }}
-                 </span>
-          </NuxtLink>
-        </li>
-        <li v-if="user">
-          <button
-            @click="onSignOut(); open = false"
-            class="w-full text-left px-3 py-1 border border-gray-500 rounded hover:bg-enaYellow hover:text-enaBlack transition"
-          >Sair</button>
-        </li>
-        <li v-else>
-          <NuxtLink
-            to="/auth"
+          <a
+            href="https://opensea.io/collection/ena-universe"
+            target="_blank"
             @click="open = false"
-            class="block px-3 py-1 border border-gray-500 rounded hover:bg-enaYellow hover:text-enaBlack transition"
-          >Entrar</NuxtLink>
+            class="block hover:text-enaYellow"
+          >Marketplace</a>
+        </li>
+        <li><NuxtLink to="/staking" @click="open = false">Staking</NuxtLink></li>
+        <li><NuxtLink to="/card-stats" @click="open = false">CardStats</NuxtLink></li>
+        <li><NuxtLink to="/tokenomics" @click="open = false">Tokenomics</NuxtLink></li>
+        <li><NuxtLink to="/about" @click="open = false">About</NuxtLink></li>
+        <!-- Launch DAPP Link Mobile -->
+        <li>
+          <a
+            href="https://dapp-omega-virid.vercel.app/"
+            target="_blank"
+            @click="open = false"
+            class="relative block text-center px-3 py-1 font-semibold text-base rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 text-enaBlack transform transition-all duration-300 hover:scale-105 animate-pulse hover:animate-none shadow-lg"
+          >
+            Launch DAPP
+            <span class="absolute inset-0 rounded-xl border-2 border-yellow-300 opacity-75 animate-ping"></span>
+          </a>
         </li>
       </ul>
     </transition>
@@ -95,27 +85,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useAuth } from '~/composables/useAuth'
-import { useCartStore } from '~/stores/cart'
 
 const open = ref(false)
-const { user, signOut } = useAuth()
-const cart = useCartStore()
-
-function onSignOut() {
-  signOut()
-}
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 .font-ena { font-family: 'Orbitron', sans-serif; }
 
-/* dropdown fade */
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity .2s;
 }
-.fade-enter-from, .fade-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
