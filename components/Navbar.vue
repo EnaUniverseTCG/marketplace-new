@@ -5,11 +5,10 @@
       <NuxtLink to="/" class="text-2xl font-bold text-enaYellow">ENA Universe</NuxtLink>
 
       <!-- Desktop links + Launch DAPP -->
-      <div class="flex items-center space-x-6">
+      <div class="flex items-center space-x-4">
         <ul class="hidden md:flex items-center space-x-6">
           <li><NuxtLink to="/" class="hover:text-enaYellow">Home</NuxtLink></li>
           <li><NuxtLink to="/play" class="hover:text-enaYellow">Play</NuxtLink></li>
-          <!-- Marketplace now points to OpenSea collection -->
           <li>
             <a
               href="https://opensea.io/collection/ena-universe"
@@ -29,10 +28,23 @@
           href="https://dapp.enauniversetcg.blog/"
           target="_blank"
           rel="noopener"
-          class="relative inline-block px-4 py-1 font-semibold text-base rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 text-enaBlack transform transition-all duration-300 hover:scale-105 animate-pulse hover:animate-none shadow-lg"
+          class="relative inline-block
+                 px-3 py-1 md:px-4 md:py-2
+                 text-sm md:text-base
+                 font-semibold rounded-xl
+                 bg-gradient-to-r from-yellow-400 to-yellow-600
+                 text-enaBlack
+                 transition-all duration-300
+                 hover:scale-105 hover:brightness-110
+                 hover:shadow-[0_0_15px_rgba(255,255,0,0.7)]
+                 group"
         >
-          Launch DAPP
-          <span class="absolute inset-0 rounded-xl border-2 border-yellow-300 opacity-75 animate-ping"></span>
+          <span class="relative z-10">Launch DAPP</span>
+          <!-- Glow effect por baixo do texto -->
+          <span
+            class="absolute inset-0 rounded-xl opacity-0 bg-yellow-300 blur-lg
+                   group-hover:opacity-30 group-hover:animate-glow"
+          ></span>
         </a>
       </div>
 
@@ -76,10 +88,21 @@
             target="_blank"
             rel="noopener"
             @click="open = false"
-            class="relative block text-center px-3 py-1 font-semibold text-base rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 text-enaBlack transform transition-all duration-300 hover:scale-105 animate-pulse hover:animate-none shadow-lg"
+            class="relative block text-center px-3 py-1
+                   md:px-4 md:py-2 text-sm md:text-base
+                   font-semibold rounded-xl
+                   bg-gradient-to-r from-yellow-400 to-yellow-600
+                   text-enaBlack
+                   transition-all duration-300
+                   hover:scale-105 hover:brightness-110
+                   hover:shadow-[0_0_15px_rgba(255,255,0,0.7)]
+                   group"
           >
-            Launch DAPP
-            <span class="absolute inset-0 rounded-xl border-2 border-yellow-300 opacity-75 animate-ping"></span>
+            <span class="relative z-10">Launch DAPP</span>
+            <span
+              class="absolute inset-0 rounded-xl opacity-0 bg-yellow-300 blur-lg
+                     group-hover:opacity-30 group-hover:animate-glow"
+            ></span>
           </a>
         </li>
       </ul>
@@ -89,20 +112,28 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
 const open = ref(false)
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
-
 .font-ena { font-family: 'Orbitron', sans-serif; }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+@keyframes glow {
+  0%,100% { opacity:0.3; filter: blur(8px); }
+  50%     { opacity:0.6; filter: blur(12px); }
+}
+.animate-glow {
+  animation: glow 1.5s ease-in-out infinite;
 }
 </style>
