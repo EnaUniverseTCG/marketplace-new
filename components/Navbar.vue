@@ -14,6 +14,7 @@
             <a
               href="https://opensea.io/collection/ena-universe"
               target="_blank"
+              rel="noopener"
               class="hover:text-enaYellow"
             >Marketplace</a>
           </li>
@@ -25,8 +26,9 @@
 
         <!-- Launch DAPP Button -->
         <a
-          href="https://dapp-omega-virid.vercel.app/"
+          href="https://dapp.enauniversetcg.blog/"
           target="_blank"
+          rel="noopener"
           class="relative inline-block px-4 py-1 font-semibold text-base rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 text-enaBlack transform transition-all duration-300 hover:scale-105 animate-pulse hover:animate-none shadow-lg"
         >
           Launch DAPP
@@ -58,6 +60,7 @@
           <a
             href="https://opensea.io/collection/ena-universe"
             target="_blank"
+            rel="noopener"
             @click="open = false"
             class="block hover:text-enaYellow"
           >Marketplace</a>
@@ -69,8 +72,9 @@
         <!-- Launch DAPP Link Mobile -->
         <li>
           <a
-            href="https://dapp-omega-virid.vercel.app/"
+            href="https://dapp.enauniversetcg.blog/"
             target="_blank"
+            rel="noopener"
             @click="open = false"
             class="relative block text-center px-3 py-1 font-semibold text-base rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 text-enaBlack transform transition-all duration-300 hover:scale-105 animate-pulse hover:animate-none shadow-lg"
           >
@@ -85,12 +89,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const open = ref(false)
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+
 .font-ena { font-family: 'Orbitron', sans-serif; }
 
 .fade-enter-active,

@@ -90,8 +90,9 @@
     <!-- Launch DAPP Button -->
     <div class="text-center">
       <a
-        href="https://dapp-omega-virid.vercel.app/"
+        href="https://dapp.enauniversetcg.blog/"
         target="_blank"
+        rel="noopener"
         class="inline-block px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-enaBlack font-bold rounded-full shadow-lg transform transition hover:scale-105 animate-pulse hover:animate-none relative overflow-hidden"
       >
         Launch DAPP
